@@ -1,45 +1,47 @@
-**Integrantes del Proyecto**
+🎉 Integrantes del Proyecto 🎉
 
-Vladimir Mota 2019-7507
+👨‍💻 Smith Rodriguez 2023-1123
 
-Gabriel Nuñez Medina 2023-1871
+🌐 Aplicación Web Simple 🌐
 
-Oderlin Sanchez Santana 2023-1339
+Descripción
+Este repositorio alberga una aplicación web sencilla diseñada para demostrar un flujo completo de desarrollo y despliegue:
 
-Diego Gonzalez 2023-1369
+🖥️ Frontend: HTML, CSS y JavaScript puro
 
+⚙️ Backend: Node.js con Express
 
+🗄️ Base de datos: MySQL (inicializada automáticamente por Docker Compose)
 
-**Aplicación Web Simple**
+🐳 Contenedores: Docker & Docker Compose
 
-**Descripción**
+🚀 CI/CD: GitHub Actions (compilación, pruebas y publicación de imagen en GitHub Container Registry)
 
-Este repositorio alberga una **aplicación web sencilla** diseñada para demostrar un flujo completo de desarrollo y despliegue:
+📊 Monitoreo y logging: Winston + endpoint de salud
 
-- **Frontend**: HTML, CSS y JavaScript puro  
-- **Backend**: Node.js con Express  
-- **Base de datos**: MySQL (inicializada automáticamente por Docker Compose)  
-- **Contenedores**: Docker & Docker Compose  
-- **CI/CD**: GitHub Actions (compilación, pruebas y publicación de imagen en GitHub Container Registry)  
-- **Monitoreo y logging**: Winston + endpoint de salud
+🔧 Tecnologías 🔧
 
----
+Node.js ≥18
 
-**Tecnologías**
+Express 4.x
 
-- **Node.js ≥18**  
-- **Express 4.x**  
-- **MySQL 5.7+**  
-- **Docker & Docker Compose**  
-- **GitHub Actions**  
-- **Jest & Supertest**  
-- **Winston** para logging  
-- **GHCR** para alojamiento de imágenes Docker
+MySQL 5.7+
 
----
+Docker & Docker Compose
 
-**Estructura del Proyecto**
+GitHub Actions
 
+Jest & Supertest
+
+Winston para logging
+
+GHCR para alojamiento de imágenes Docker
+
+📂 Estructura del Proyecto 📂
+
+pgsql
+Copiar
+Editar
 mi-proyecto/
 ├── backend/
 │   ├── package.json
@@ -61,47 +63,44 @@ mi-proyecto/
 └── .github/
     └── workflows/
         └── ci-cd.yml
+Clonar el repositorio
+👾 git clone https://github.com/<tu_usuario>/mi-proyecto.git
+🔑 cd mi-proyecto
 
-**Clonar el repositorio**
+Configuración de variables de entorno
+💡 Copia backend/.env.example a backend/.env (o crea backend/.env) con:
 
-   git clone https://github.com/<tu_usuario>/mi-proyecto.git
-   cd mi-proyecto
-
-- Configurar variables de entorno
-
-- Copia backend/.env.example a backend/.env (o crea backend/.env) con:
-
+ini
+Copiar
+Editar
 PORT=3000
 DB_HOST=db
 DB_USER=root
 DB_PASSWORD=mipassword
 DB_NAME=mydatabase
+Levantar servicios con Docker Compose
+🐳 docker-compose up --build -d
 
-- Levantar servicios con Docker Compose
+Verificar
+🔍 docker ps
 
-docker-compose up --build -d
-
-- Verificar
-
-docker ps
-
-**Ejecución Local (sin Docker)**
+🖥️ Ejecución Local (sin Docker) 🖥️
 
 cd backend
+
 npm install
+
 npm start
 
-Descripción de Componentes
+🖋️ Descripción de Componentes 🖋️
 
 Frontend
-index.html: página principal
-
-styles.css: estilos básicos
-
-script.js: petición fetch al endpoint /api/saludo
+📄 index.html: página principal
+🎨 styles.css: estilos básicos
+📡 script.js: petición fetch al endpoint /api/saludo
 
 Backend
-server.js:
+🖥️ server.js:
 
 Conexión a MySQL usando mysql2/promise
 
@@ -111,19 +110,14 @@ Rutas:
 
 GET /api/saludo → { mensaje: 'Hola desde el backend!' }
 
-GET /health → HTTP 200 “OK”
-
-.eslintrc.json: reglas básicas de estilo
-
-tests/:
-
-unit/: prueba aislada con Express
-
-integration/: prueba real importando app
+GET /health → HTTP 200 "OK"
 
 Base de Datos
-database/schema.sql:
+💾 database/schema.sql:
 
+sql
+Copiar
+Editar
 CREATE DATABASE IF NOT EXISTS mydatabase;
 USE mydatabase;
 CREATE TABLE IF NOT EXISTS users (
@@ -132,11 +126,13 @@ CREATE TABLE IF NOT EXISTS users (
   email VARCHAR(100) UNIQUE NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+🐋 Docker & Docker Compose 🐋
 
-**Docker & Docker Compose**
+Dockerfile
 
-- Dockerfile (root)
-
+dockerfile
+Copiar
+Editar
 FROM node:18
 WORKDIR /usr/src/app
 COPY backend/package*.json ./backend/
@@ -145,9 +141,11 @@ RUN npm install
 COPY backend/ .
 EXPOSE 3000
 CMD ["node", "server.js"]
+docker-compose.yml
 
-- docker-compose.yml
-
+yaml
+Copiar
+Editar
 version: '3.8'
 services:
   app:
@@ -174,9 +172,11 @@ services:
 
 volumes:
   db_data:
+🚀 CI/CD con GitHub Actions 🚀
 
-**CI/CD con GitHub Actions**
-
+yaml
+Copiar
+Editar
 # .github/workflows/ci-cd.yml
 name: CI/CD Pipeline
 permissions:
@@ -211,20 +211,24 @@ jobs:
           IMAGE=ghcr.io/${{ github.repository_owner }}/mi-app:latest
           docker build -t $IMAGE .
           docker push $IMAGE
+🧪 Pruebas Automatizadas 🧪
 
-**Pruebas Automatizadas**
+Ejecutar en la terminal:
 
-En la terminal ejecutar:
+bash
+Copiar
+Editar
 cd backend
 npm test
+Invoca Jest con:
 
-- Invoca Jest con:
-
+json
+Copiar
+Editar
 "scripts": {
   "test": "node node_modules/jest/bin/jest.js --runInBand"
 }
-
-**Monitoreo & Logging**
+📊 Monitoreo & Logging 📊
 
 Winston: logs JSON en consola
 
@@ -232,15 +236,10 @@ Endpoint /health: útil para sondas de disponibilidad
 
 Estrategias futuras: integración con Prometheus, Grafana o Datadog
 
-**Lecciones Aprendidas**
+💡 Lecciones Aprendidas 💡
 
 Alineación de versiones Node.js (local vs CI).
 
 Uso de permisos packages: write y token GHCR.
 
 Invocar Jest con node ... jest.js para evitar permisos denegados.
-
-
-
-
-
