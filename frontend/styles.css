@@ -1,10 +1,51 @@
+/* Estilo general para el cuerpo de la página */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 2em;
-  }
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-  
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  margin: 2em;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+/* Estilo para el título */
+h1 {
+  color: #4CAF50;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+/* Estilo para el párrafo */
+p {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Estilo para el botón */
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Efecto al pasar el mouse por encima del botón */
+button:hover {
+  background-color: #45a049;
+}
+
+/* Estilo para el contenedor de resultados */
+#resultado {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #333;
+  font-size: 1.1em;
+}
